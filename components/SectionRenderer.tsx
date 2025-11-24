@@ -68,7 +68,7 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
                       <motion.div 
                         key={project.id}
                         variants={itemVariants}
-                        className="snap-center w-[85vw] sm:w-[60vw] md:w-[500px] h-[60vh] md:h-[65vh] max-h-[600px] bg-slate-900/60 border border-slate-700/50 hover:border-cyan-500/80 rounded-sm overflow-hidden backdrop-blur-md transition-all duration-300 flex flex-col relative group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]"
+                        className="snap-center w-[85vw] sm:w-[60vw] md:w-[500px] h-[55vh] md:h-[60vh] max-h-[550px] bg-slate-900/60 border border-slate-700/50 hover:border-cyan-500/80 rounded-sm overflow-hidden backdrop-blur-md transition-all duration-300 flex flex-col relative group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]"
                       >
                           <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                           
