@@ -1,24 +1,20 @@
 
 import OpenAI from 'openai';
 
-export const generateAIResponse = async (
+export const generateOpenAIResponse = async (
     prompt: string, 
     systemInstruction: string,
-    history: { role: 'user' | 'model'; content: string }[] = [],
-    modelName: string = 'gpt-4o'
+    history: { role: 'user' | 'model'; content: string }[],
+    apiKey: string,
+    modelName: string
 ): Promise<string> => {
-    try {
-        // Support both process.env (mapped in vite.config) and import.meta.env (Vite standard)
-        const apiKey = process.env.API_KEY || (import.meta as any).env?.VITE_API_KEY;
-        
-        if (!apiKey) {
-            console.warn("API Key is missing.");
-            return "ACCESS DENIED. API Key missing.";
-        }
+    if (!apiKey) {
+        return "ACCESS DENIED. OpenAI API Key is missing.";
+    }
 
+    try {
         // Initialize OpenAI Client
         // Note: dangerouslyAllowBrowser is required because we are calling this from the frontend.
-        // In a production environment with strict security, this should be proxied through a backend.
         const openai = new OpenAI({
             apiKey: apiKey,
             dangerouslyAllowBrowser: true 
@@ -35,7 +31,7 @@ export const generateAIResponse = async (
                 ...formattedHistory,
                 { role: "user", content: prompt }
             ],
-            model: modelName,
+            model: modelName || 'gpt-4o',
         });
 
         return completion.choices[0].message.content || "No data received from the core.";

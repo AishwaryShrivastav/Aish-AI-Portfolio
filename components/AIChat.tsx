@@ -2,11 +2,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, Send, Minimize2, Cpu, Lock, Unlock, X } from 'lucide-react';
-import { generateAIResponse } from '../services/openaiService';
+import { generateAIResponse } from '../services/aiService';
 import { SiteConfig } from '../types';
 
 interface AIChatProps {
     config: SiteConfig['aiConfig'];
+    fullSiteData: SiteConfig; // Pass full site data for context
     onOpenCMS: () => void;
 }
 
@@ -15,7 +16,7 @@ interface Message {
     text: string;
 }
 
-const AIChat: React.FC<AIChatProps> = ({ config, onOpenCMS }) => {
+const AIChat: React.FC<AIChatProps> = ({ config, fullSiteData, onOpenCMS }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState('');
@@ -48,14 +49,13 @@ const AIChat: React.FC<AIChatProps> = ({ config, onOpenCMS }) => {
         setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
         setIsThinking(true);
 
-        // Convert simplistic message history for the service
         const history = messages.map(m => ({ role: m.role, content: m.text }));
 
+        // Call the Central AI Service with full site context
         const response = await generateAIResponse(
             userMsg, 
-            config.systemPrompt, 
             history,
-            config.modelName
+            fullSiteData 
         );
 
         setIsThinking(false);
@@ -87,13 +87,15 @@ const AIChat: React.FC<AIChatProps> = ({ config, onOpenCMS }) => {
     };
 
     const submitAuth = () => {
-        if (authCode === "iamSAI!^35") {
+        const trimmedCode = authCode.trim();
+        
+        if (trimmedCode === "iamSAI!^35") {
             setShowAuth(false);
             setAuthCode('');
             onOpenCMS();
         } else {
-            alert("ACCESS DENIED. INCORRECT CREDENTIALS.");
-            setAuthCode('');
+             alert("ACCESS DENIED. INCORRECT CREDENTIALS.");
+             setAuthCode('');
         }
     };
 
@@ -104,11 +106,11 @@ const AIChat: React.FC<AIChatProps> = ({ config, onOpenCMS }) => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 whileHover={{ scale: 1.1 }}
-                className={`fixed bottom-6 right-6 z-50 px-5 py-4 rounded-full shadow-[0_0_20px_rgba(34,211,238,0.5)] border border-cyan-400 bg-slate-900/90 backdrop-blur-md text-cyan-400 transition-all flex items-center space-x-2 font-orbitron font-bold tracking-wider hover:bg-cyan-900/50 ${isOpen ? 'hidden' : 'flex'}`}
+                className={`fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 px-4 py-3 md:px-5 md:py-4 rounded-full shadow-[0_0_20px_rgba(34,211,238,0.5)] border border-cyan-400 bg-slate-900/90 backdrop-blur-md text-cyan-400 transition-all flex items-center space-x-2 font-orbitron font-bold tracking-wider hover:bg-cyan-900/50 ${isOpen ? 'hidden' : 'flex'}`}
                 onClick={() => setIsOpen(true)}
             >
-                <Cpu size={24} className="animate-pulse" />
-                <span>AI</span>
+                <Cpu size={20} className="animate-pulse md:w-6 md:h-6" />
+                <span className="text-sm md:text-base">AI</span>
             </motion.button>
 
             {/* Chat Interface */}
@@ -118,13 +120,15 @@ const AIChat: React.FC<AIChatProps> = ({ config, onOpenCMS }) => {
                         initial={{ opacity: 0, y: 100, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 100, scale: 0.9 }}
-                        className="fixed bottom-6 right-6 z-50 w-[90vw] md:w-96 h-[500px] max-h-[80vh] flex flex-col rounded-xl overflow-hidden border border-cyan-500/50 bg-slate-950/95 shadow-[0_0_40px_rgba(34,211,238,0.2)] backdrop-blur-xl"
+                        className="fixed bottom-0 right-0 md:bottom-6 md:right-6 z-50 w-full h-full md:w-96 md:h-[500px] md:max-h-[80vh] flex flex-col md:rounded-xl overflow-hidden border-t md:border border-cyan-500/50 bg-slate-950/95 shadow-[0_0_40px_rgba(34,211,238,0.2)] backdrop-blur-xl"
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between p-4 bg-cyan-950/30 border-b border-cyan-500/30 relative">
+                        <div className="flex items-center justify-between p-3 md:p-4 bg-cyan-950/30 border-b border-cyan-500/30 relative">
                             <div className="flex items-center space-x-2">
-                                <Cpu size={20} className="text-cyan-400" />
-                                <span className="font-orbitron text-cyan-100 font-bold tracking-widest">AISH_AI (GPT)</span>
+                                <Cpu size={18} className="text-cyan-400 md:w-5 md:h-5" />
+                                <span className="font-orbitron text-cyan-100 font-bold tracking-widest text-sm md:text-base">
+                                    AISH_AI ({config.provider.toUpperCase()})
+                                </span>
                             </div>
                             
                             <div className="flex items-center space-x-2">
@@ -170,7 +174,7 @@ const AIChat: React.FC<AIChatProps> = ({ config, onOpenCMS }) => {
                         </div>
 
                         {/* Messages */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-cyan-700">
+                        <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-4 scrollbar-thin scrollbar-thumb-cyan-700">
                             {messages.map((msg, idx) => (
                                 <motion.div
                                     key={idx}
@@ -178,7 +182,7 @@ const AIChat: React.FC<AIChatProps> = ({ config, onOpenCMS }) => {
                                     animate={{ opacity: 1, x: 0 }}
                                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                                 >
-                                    <div className={`max-w-[80%] p-3 rounded-lg text-sm leading-relaxed ${
+                                    <div className={`max-w-[85%] p-3 rounded-lg text-sm leading-relaxed ${
                                         msg.role === 'user' 
                                             ? 'bg-fuchsia-900/40 border border-fuchsia-500/40 text-fuchsia-100 rounded-br-none' 
                                             : 'bg-cyan-900/40 border border-cyan-500/40 text-cyan-100 rounded-bl-none'
@@ -189,8 +193,8 @@ const AIChat: React.FC<AIChatProps> = ({ config, onOpenCMS }) => {
                             ))}
                             {isThinking && (
                                 <div className="flex justify-start">
-                                    <div className="bg-cyan-900/20 border border-cyan-500/20 text-cyan-400 p-3 rounded-lg rounded-bl-none text-xs animate-pulse">
-                                        COMMUNICATING WITH OPENAI...
+                                    <div className="bg-cyan-900/20 border border-cyan-500/20 text-cyan-400 p-3 rounded-lg rounded-bl-none text-xs animate-pulse uppercase">
+                                        ACCESSING {config.provider} NEURAL NET...
                                     </div>
                                 </div>
                             )}
@@ -198,7 +202,7 @@ const AIChat: React.FC<AIChatProps> = ({ config, onOpenCMS }) => {
                         </div>
 
                         {/* Input Area */}
-                        <div className="p-4 bg-slate-900/50 border-t border-cyan-500/30 flex items-center space-x-2">
+                        <div className="p-3 md:p-4 bg-slate-900/50 border-t border-cyan-500/30 flex items-center space-x-2 safe-area-bottom">
                             <button 
                                 onClick={handleVoice} 
                                 className={`p-2 rounded-full border transition-all ${isListening ? 'bg-red-500/20 border-red-500 text-red-400 animate-pulse' : 'bg-slate-800 border-slate-600 text-slate-400 hover:text-cyan-400 hover:border-cyan-400'}`}
@@ -210,7 +214,7 @@ const AIChat: React.FC<AIChatProps> = ({ config, onOpenCMS }) => {
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                                placeholder="Execute command or ask query..."
+                                placeholder="Message..."
                                 className="flex-1 bg-slate-950 border border-slate-700 rounded-md px-3 py-2 text-sm text-cyan-100 focus:outline-none focus:border-cyan-500 placeholder-slate-600"
                             />
                             <button 

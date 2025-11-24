@@ -36,19 +36,41 @@ export interface SectionData {
   isVisible: boolean;
 }
 
+export interface Analytics {
+  totalVisits: number;
+  lastVisit: string;
+  devices: {
+    mobile: number;
+    desktop: number;
+  };
+}
+
+export type AIProvider = 'openai' | 'gemini' | 'huggingface';
+
 export interface SiteConfig {
   hero: {
-    title: string; // The Name (e.g., AISH)
-    subtitle: string; // Static part of the one-liner
-    rotatingWords: string[]; // Dynamic part
+    title: string;
+    subtitle: string;
+    rotatingWords: string[];
     experienceText: string;
     techStack: string[];
     bgImage: string;
   };
   aiConfig: {
+    enabled: boolean;
+    provider: AIProvider;
     systemPrompt: string;
-    modelName: string; // 'gemini' or 'custom'
     welcomeMessage: string;
+    apiKeys: {
+      openai: string;
+      gemini: string;
+      huggingface: string;
+    };
+    models: {
+      openai: string;
+      gemini: string;
+      huggingface: string;
+    };
   };
   footer: {
     title: string;
@@ -61,4 +83,5 @@ export interface SiteConfig {
     };
   };
   sections: SectionData[];
+  analytics?: Analytics;
 }

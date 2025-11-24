@@ -1,34 +1,33 @@
+
 import { GoogleGenAI } from "@google/genai";
 
-const getClient = () => {
-    const apiKey = process.env.API_KEY || '';
-    if (!apiKey) {
-        console.warn("API Key is missing. AI features will not work.");
-    }
-    return new GoogleGenAI({ apiKey });
-};
-
-export const generateAIResponse = async (
+export const generateGeminiResponse = async (
     prompt: string, 
     systemInstruction: string,
-    history: { role: 'user' | 'model'; content: string }[] = []
+    history: { role: 'user' | 'model'; content: string }[],
+    apiKey: string,
+    modelName: string
 ): Promise<string> => {
+    if (!apiKey) {
+        return "ACCESS DENIED. Gemini API Key is missing.";
+    }
+
     try {
-        const client = getClient();
+        const client = new GoogleGenAI({ apiKey });
         
-        // Construct the full context including history for a simple stateless chat experience 
-        // or use the Chat API if we were maintaining a session object properly.
-        // For this implementation, we will use the Chat API to maintain simple context.
-        
+        // Convert history to Gemini format
+        // Gemini expects 'user' and 'model' roles.
+        const geminiHistory = history.map(h => ({
+            role: h.role,
+            parts: [{ text: h.content }]
+        }));
+
         const chat = client.chats.create({
-            model: 'gemini-2.5-flash',
+            model: modelName || 'gemini-2.5-flash',
             config: {
                 systemInstruction: systemInstruction,
             },
-            history: history.map(h => ({
-                role: h.role,
-                parts: [{ text: h.content }]
-            }))
+            history: geminiHistory
         });
 
         const result = await chat.sendMessage({ message: prompt });
