@@ -8,7 +8,7 @@ export const SEED_SECTIONS: SectionData[] = [
     "title": "Engineering Philosophy",
     "subtitle": "Hands-on Leadership, AI-First Thinking",
     "isVisible": true,
-    "content": "I believe true leadership is grounded in **hands-on development** and **servant leadership**. Real management isn’t about controlling engineering, it’s about **people management and self-management**. My guiding philosophy was shaped by the **Sri Sathya Sai National Leadership Program**, where I learned the power of leading by example, empathy, and service.\n\nAt **Llama**, where leadership development was the company’s core offering for global organizations like LinkedIn, BCG, and McKinsey, I deeply experienced how technology and leadership can coexist to create meaningful impact.\n\nThis understanding continues to influence how I lead teams by fostering clarity, autonomy, and purpose."
+    "content": "I believe that true technical leadership demands staying hands-on. You cannot effectively lead engineering teams without understanding the code, the complexity, and the trade-offs. Ultimately, engineering management is not just about systems; it is fundamentally about people management—empowering individuals to master their craft and take ownership.\n\nMy approach was deeply shaped by the Sri Sathya Sai National Leadership Program, where I imbibed the values of leading through service, empathy, and integrity. Later, at Llama, building leadership development tools for global giants like LinkedIn and BCG, I saw firsthand how technology serves human potential. This experience cemented my conviction: build systems that scale, but build teams that thrive through autonomy, clarity, and purpose."
   },
   {
     "id": "projects-section",
@@ -20,17 +20,25 @@ export const SEED_SECTIONS: SectionData[] = [
       {
         "id": "p1",
         "title": "MachineHack Platform",
-        "description": "Led the complete transformation of MachineHack from a monolithic ML hackathon product into a modular, AI-first, agentic ecosystem. Architected the migration to a serverless, event-driven system using Node.js, Python, MongoDB, and AWS. Expanded scope beyond ML to domain-specific and multi-agent hackathons while also managing product strategy and project execution.",
+        "description": "Led the complete transformation of MachineHack SaaS from a monolithic ML hackathon product into a modular, AI-first, agentic ecosystem. Architected the migration to a serverless, event-driven system using Node.js, Python, MongoDB, and AWS. Expanded scope beyond ML to domain-specific and multi-agent hackathons while also managing product strategy and project execution.",
         "techStack": ["Agentic Architecture", "Python", "Node.js", "MongoDB", "Serverless", "AWS"],
         "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
         "year": "2025"
+      },
+      {
+        "id": "p4",
+        "title": "Aerchain Platform",
+        "description": "Architected an **AI-powered B2B SaaS procurement platform** leveraging LLMs, RAG pipelines, and event-driven microservices. Developed intelligent agents for OCR, negotiation, and document workflows to enhance automation and simplify user journeys. Managed product, project, and engineering alignment for consistent delivery and AI adoption.",
+        "techStack": ["Node.js", "React", "AI", "PostgreSQL", "RAG", "Agentic AI", "LLMs"],
+        "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+        "year": "2024"
       },
       {
         "id": "p2",
         "title": "Ask Llama AI Chatbot",
         "description": "Built an AI-first conversational assistant with OpenAI APIs and Vue.js. Designed multi-agent reasoning and feedback loops, enabling natural dialogue and contextual learning. Managed both product direction and engineering delivery from concept to deployment.",
         "techStack": ["Vue.js", "Nest.js", "OpenAI", "LangChain", "RAG"],
-        "imageUrl": "https://images.unsplash.com/photo-1535378433864-825377bc356c?q=80&w=2083&auto=format&fit=crop",
+        "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
         "year": "2024"
       },
       {
@@ -42,19 +50,11 @@ export const SEED_SECTIONS: SectionData[] = [
         "year": "2023"
       },
       {
-        "id": "p4",
-        "title": "Aerchain Platform",
-        "description": "Architected an **AI-powered, agentic procurement platform** leveraging LLMs, RAG pipelines, and event-driven microservices. Developed intelligent agents for OCR, negotiation, and document workflows to enhance automation and simplify user journeys. Managed product, project, and engineering alignment for consistent delivery and AI adoption.",
-        "techStack": ["Node.js", "React", "AI", "PostgreSQL", "RAG", "Agentic AI", "LLMs"],
-        "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
-        "year": "2024"
-      },
-      {
         "id": "p5",
         "title": "Slack Bot for LMS",
         "description": "Developed a Slack-integrated automation bot to handle LMS notifications, real-time course updates, and workflow management for instructors and learners.",
         "techStack": ["JavaScript", "Node.js", "Slack API"],
-        "imageUrl": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop",
+        "imageUrl": "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop",
         "year": "2023"
       },
       {
@@ -70,7 +70,7 @@ export const SEED_SECTIONS: SectionData[] = [
         "title": "AAPA B2B Marketplace",
         "description": "Built a B2B marketplace for automotive parts integrating payment and shipping APIs for 10+ stakeholders, designed for scalability and high availability.",
         "techStack": ["Apache OFBiz", "JavaScript", "Vue.js"],
-        "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+        "imageUrl": "https://images.unsplash.com/photo-1486262715619-01b80258e0b5?q=80&w=2070&auto=format&fit=crop",
         "year": "2020"
       }
     ]
@@ -178,10 +178,12 @@ export const SEED_DATA: SiteConfig = {
       "Redis",
       "CI/CD"
     ],
-    "bgImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=3870&auto=format&fit=crop"
+    "bgImage": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=3000&auto=format&fit=crop",
+    "showRotatingText": true
   },
   aiConfig: {
     "enabled": true,
+    "showWidget": true,
     "provider": "openai",
     "systemPrompt": "You are a digital assistant for Aishwary Shrivastava — Principal Engineer and AI Systems Architect. You know his expertise in agentic architectures, RAG, LLM-driven products, leadership, and product strategy. He blends hands-on engineering with people-first leadership and believes management is about enabling people and self-mastery. He studied servant leadership at Sri Sathya Sai Institute and built teams from scratch at Llama and MachineHack, driving AI-first transformations.",
     "welcomeMessage": "Hi! Ask me about Aishwary’s AI systems, leadership philosophy, or the products he’s built.",
@@ -200,7 +202,7 @@ export const SEED_DATA: SiteConfig = {
     "title": "Let’s Connect",
     "message": "© 2025 Aishwary Shrivastava. Designing systems and teams that scale with intelligence.",
     "socials": {
-      "twitter": "",
+      "twitter": "https://x.com/aishshrivastava",
       "linkedin": "https://linkedin.com/in/aishwaryshrivastava",
       "github": "",
       "email": "mailto:aishwaryshrivastava@gmail.com"

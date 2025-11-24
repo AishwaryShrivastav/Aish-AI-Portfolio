@@ -1,7 +1,8 @@
+
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { SectionData, Project, Experience, Education } from '../types';
-import { Calendar, Award, User } from 'lucide-react';
+import { Calendar, Award, User, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Props {
   data: SectionData;
@@ -23,8 +24,16 @@ const itemVariants = {
 const SectionRenderer: React.FC<Props> = ({ data }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const isScrollableSection = data.type === 'experience' || data.type === 'education' || data.type === 'custom';
+
+  const scrollProjects = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === 'left' ? -350 : 350;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const renderContent = () => {
     switch (data.type) {
@@ -34,7 +43,26 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
              {/* Decorative Background */}
              <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-slate-950 z-10 pointer-events-none hidden md:block"></div>
              
-             <div className="w-full overflow-x-auto pb-8 md:pb-12 pt-4 no-scrollbar snap-x snap-mandatory px-4 md:px-20">
+             {/* Navigation Buttons */}
+             <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 w-full justify-between px-4 z-20 pointer-events-none">
+                <button 
+                  onClick={() => scrollProjects('left')}
+                  className="pointer-events-auto p-3 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:scale-110"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button 
+                  onClick={() => scrollProjects('right')}
+                  className="pointer-events-auto p-3 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:scale-110"
+                >
+                  <ChevronRight size={24} />
+                </button>
+             </div>
+
+             <div 
+                ref={scrollContainerRef}
+                className="w-full overflow-x-auto pb-8 md:pb-12 pt-4 no-scrollbar snap-x snap-mandatory px-4 md:px-20"
+             >
                  <div className="flex space-x-4 md:space-x-10 min-w-max">
                     {(data.items as Project[])?.map((project) => (
                       <motion.div 
@@ -133,6 +161,19 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
         );
 
       case 'philosophy':
+        return (
+          <div className="max-w-5xl mx-auto px-4 md:px-6 pb-10 md:pb-20">
+             <div className="relative bg-gradient-to-br from-slate-900/60 to-slate-900/20 border-l-4 border-cyan-500 p-6 md:p-10 rounded-r-2xl backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+                <Quote className="absolute top-4 right-4 md:top-6 md:right-8 text-cyan-500/10 w-16 h-16 md:w-32 md:h-32 rotate-180" />
+                <div className="prose prose-sm sm:prose-base md:prose-lg prose-invert max-w-none relative z-10">
+                    <p className="whitespace-pre-wrap text-slate-300 font-light leading-relaxed tracking-wide text-justify md:text-left">
+                        {data.content}
+                    </p>
+                </div>
+             </div>
+          </div>
+        );
+
       case 'custom':
         return (
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-left pb-10 md:pb-20">
@@ -156,7 +197,7 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
-      className={`w-full relative flex flex-col py-12 md:py-20 ${isScrollableSection ? 'min-h-[100dvh] h-auto' : 'min-h-[100dvh] justify-center overflow-hidden'}`}
+      className={`snap-start snap-always w-full relative flex flex-col py-12 md:py-20 ${isScrollableSection ? 'min-h-[100dvh] h-auto' : 'min-h-[100dvh] justify-center overflow-hidden'}`}
     >
         {/* Background Decorative Elements - reduced blur on mobile for perf */}
         <div className="absolute top-0 right-0 w-[200px] md:w-[500px] h-[200px] md:h-[500px] bg-cyan-500/5 rounded-full blur-[50px] md:blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>

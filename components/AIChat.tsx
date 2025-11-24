@@ -89,6 +89,7 @@ const AIChat: React.FC<AIChatProps> = ({ config, fullSiteData, onOpenCMS }) => {
     const submitAuth = () => {
         const trimmedCode = authCode.trim();
         
+        // Direct string comparison for reliability in all envs (HTTP/HTTPS)
         if (trimmedCode === "iamSAI!^35") {
             setShowAuth(false);
             setAuthCode('');
@@ -98,6 +99,9 @@ const AIChat: React.FC<AIChatProps> = ({ config, fullSiteData, onOpenCMS }) => {
              setAuthCode('');
         }
     };
+
+    // If widget is hidden via CMS config, return null
+    if (config.showWidget === false) return null;
 
     return (
         <>

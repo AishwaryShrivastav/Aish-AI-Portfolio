@@ -55,9 +55,11 @@ export interface SiteConfig {
     experienceText: string;
     techStack: string[];
     bgImage: string;
+    showRotatingText?: boolean;
   };
   aiConfig: {
     enabled: boolean;
+    showWidget: boolean; // Controls visibility of the floating AI button
     provider: AIProvider;
     systemPrompt: string;
     welcomeMessage: string;

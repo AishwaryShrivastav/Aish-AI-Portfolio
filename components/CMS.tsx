@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Save, Plus, Trash2, Edit3, Settings, Eye, EyeOff, BarChart2, Smartphone, Monitor, Cpu } from 'lucide-react';
+import { X, Save, Plus, Trash2, Edit3, Settings, Eye, EyeOff, BarChart2, Smartphone, Monitor, Cpu, MessageSquare } from 'lucide-react';
 import { SiteConfig, SectionData, AIProvider } from '../types';
 
 interface CMSProps {
@@ -245,6 +245,15 @@ const CMS: React.FC<CMSProps> = ({ data, onSave, onClose }) => {
                                     className="w-full bg-slate-950 border border-slate-700 p-3 rounded text-white focus:border-cyan-500 outline-none"
                                 />
                             </div>
+                            <div className="flex items-center space-x-2 py-2">
+                                <input 
+                                    type="checkbox"
+                                    checked={localData.hero.showRotatingText !== false}
+                                    onChange={(e) => updateHero('showRotatingText', e.target.checked)}
+                                    className="rounded border-slate-700 bg-slate-950 text-cyan-500 focus:ring-cyan-500"
+                                />
+                                <label className="text-sm text-cyan-400 font-bold">Show Rotating Text</label>
+                            </div>
                              <div className="space-y-2">
                                 <label className="block text-xs md:text-sm text-cyan-400 font-bold">Experience Text</label>
                                 <input 
@@ -277,6 +286,23 @@ const CMS: React.FC<CMSProps> = ({ data, onSave, onClose }) => {
                             <div className="bg-fuchsia-900/10 border border-fuchsia-500/30 p-3 rounded text-xs md:text-sm text-fuchsia-200 mb-4 flex items-center">
                                 <Cpu size={20} className="mr-2 text-fuchsia-400"/>
                                 <span>Configure the AI Brain. Toggle providers and set specific models.</span>
+                            </div>
+
+                            {/* Widget Toggle */}
+                            <div className="flex items-center justify-between bg-slate-900/50 p-3 rounded border border-slate-800">
+                                <div className="flex items-center">
+                                    <MessageSquare size={18} className="text-cyan-400 mr-3" />
+                                    <div>
+                                        <p className="text-sm font-bold text-white">Floating AI Widget</p>
+                                        <p className="text-xs text-slate-500">Show the AI chat button on the site</p>
+                                    </div>
+                                </div>
+                                <button 
+                                    onClick={() => updateAI('showWidget', !localData.aiConfig.showWidget)}
+                                    className={`px-3 py-1 rounded text-xs font-bold ${localData.aiConfig.showWidget !== false ? 'bg-green-500/20 text-green-400 border border-green-500/50' : 'bg-red-500/20 text-red-400 border border-red-500/50'}`}
+                                >
+                                    {localData.aiConfig.showWidget !== false ? 'VISIBLE' : 'HIDDEN'}
+                                </button>
                             </div>
 
                             {/* Provider Selection */}
