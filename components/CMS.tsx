@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Save, Plus, Trash2, Edit3, Settings, Eye, EyeOff, BarChart2, Smartphone, Monitor, Cpu, MessageSquare } from 'lucide-react';
+import { X, Save, Plus, Trash2, Edit3, Settings, Eye, EyeOff, BarChart2, Smartphone, Monitor, Cpu, MessageSquare, Download, Copy } from 'lucide-react';
 import { SiteConfig, SectionData, AIProvider } from '../types';
 
 interface CMSProps {
@@ -47,7 +47,7 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ value, onChange }) => {
 
 const CMS: React.FC<CMSProps> = ({ data, onSave, onClose }) => {
     const [localData, setLocalData] = useState<SiteConfig>(JSON.parse(JSON.stringify(data)));
-    const [activeTab, setActiveTab] = useState<'general' | 'sections' | 'ai' | 'footer' | 'analytics'>('general');
+    const [activeTab, setActiveTab] = useState<'general' | 'sections' | 'ai' | 'footer' | 'analytics' | 'export'>('general');
     const [editingSectionId, setEditingSectionId] = useState<string | null>(null);
 
     const handleSave = () => {
@@ -203,7 +203,7 @@ const CMS: React.FC<CMSProps> = ({ data, onSave, onClose }) => {
 
                 {/* Tabs */}
                 <div className="flex border-b border-cyan-500/20 bg-slate-900/50 overflow-x-auto no-scrollbar">
-                    {['general', 'sections', 'ai', 'footer', 'analytics'].map((tab) => (
+                    {['general', 'sections', 'ai', 'footer', 'analytics', 'export'].map((tab) => (
                         <button 
                             key={tab}
                             onClick={() => setActiveTab(tab as any)}
@@ -266,9 +266,10 @@ const CMS: React.FC<CMSProps> = ({ data, onSave, onClose }) => {
                                 <label className="block text-xs md:text-sm text-cyan-400 font-bold">Tech Stack</label>
                                 <textarea 
                                     value={localData.hero.techStack.join(', ')}
-                                    onChange={(e) => updateHero('techStack', e.target.value.split(',').map(s => s.trim()))}
+                                    onChange={(e) => updateHero('techStack', e.target.value.split(',').map(s => s.trim()).filter(Boolean))}
                                     className="w-full bg-slate-950 border border-slate-700 p-3 rounded text-white focus:border-cyan-500 outline-none h-20"
                                 />
+                                <p className="text-[10px] text-slate-500 mt-1">Comma separated list of technologies</p>
                             </div>
                             <div className="space-y-2">
                                 <label className="block text-xs md:text-sm text-cyan-400 font-bold">Background URL</label>
@@ -520,6 +521,32 @@ const CMS: React.FC<CMSProps> = ({ data, onSave, onClose }) => {
                                     Clear Analytics
                                 </button>
                              </div>
+                        </div>
+                    )}
+                    
+                    {activeTab === 'export' && (
+                        <div className="space-y-6 max-w-2xl mx-auto">
+                            <div className="bg-cyan-900/10 border border-cyan-500/30 p-4 rounded text-sm text-cyan-200 mb-4">
+                                <h4 className="font-bold flex items-center mb-2"><Download size={16} className="mr-2"/> Persistent Deployment</h4>
+                                <p className="text-xs text-cyan-300/80 mb-2">
+                                    Since this CMS runs in the browser, changes are only saved for YOU. To make changes permanent for everyone, copy this JSON and update the <code>SEED_DATA</code> in your <code>constants.ts</code> file before deploying.
+                                </p>
+                            </div>
+                            
+                            <div className="relative">
+                                <textarea 
+                                    readOnly
+                                    value={JSON.stringify(localData, null, 2)}
+                                    className="w-full h-96 bg-slate-950 border border-slate-700 p-4 rounded text-xs text-fuchsia-300 font-mono focus:outline-none"
+                                />
+                                <button 
+                                    onClick={() => navigator.clipboard.writeText(JSON.stringify(localData, null, 2))}
+                                    className="absolute top-2 right-2 bg-slate-800 hover:bg-slate-700 text-white p-2 rounded border border-slate-600 transition-colors"
+                                    title="Copy to Clipboard"
+                                >
+                                    <Copy size={16} />
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>

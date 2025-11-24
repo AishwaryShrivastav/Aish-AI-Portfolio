@@ -39,7 +39,7 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
     switch (data.type) {
       case 'projects':
         return (
-          <div className="w-full relative group/slider">
+          <div className="w-full relative group/slider h-full flex flex-col justify-center">
              {/* Decorative Background */}
              <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-slate-950 z-10 pointer-events-none hidden md:block"></div>
              
@@ -47,53 +47,55 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
              <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 w-full justify-between px-6 z-20 pointer-events-none">
                 <button 
                   onClick={() => scrollProjects('left')}
-                  className="pointer-events-auto p-4 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:scale-110"
+                  className="pointer-events-auto p-3 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:scale-110"
                 >
-                  <ChevronLeft size={28} />
+                  <ChevronLeft size={24} />
                 </button>
                 <button 
                   onClick={() => scrollProjects('right')}
-                  className="pointer-events-auto p-4 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:scale-110"
+                  className="pointer-events-auto p-3 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:scale-110"
                 >
-                  <ChevronRight size={28} />
+                  <ChevronRight size={24} />
                 </button>
              </div>
 
              <div 
                 ref={scrollContainerRef}
-                className="w-full overflow-x-auto pb-12 md:pb-16 pt-6 no-scrollbar snap-x snap-mandatory px-6 md:px-24"
+                className="w-full overflow-x-auto pb-8 pt-4 no-scrollbar snap-x snap-mandatory px-6 md:px-24"
              >
-                 <div className="flex space-x-6 md:space-x-12 min-w-max">
+                 <div className="flex space-x-6 md:space-x-12 min-w-max items-center">
                     {(data.items as Project[])?.map((project) => (
                       <motion.div 
                         key={project.id}
                         variants={itemVariants}
-                        className="snap-center w-[85vw] sm:w-[65vw] md:w-[550px] bg-slate-900/60 border border-slate-700/50 hover:border-cyan-500/80 rounded-sm overflow-hidden backdrop-blur-md transition-all duration-300 flex flex-col relative group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]"
+                        className="snap-center w-[85vw] sm:w-[60vw] md:w-[500px] h-[60vh] md:h-[65vh] max-h-[600px] bg-slate-900/60 border border-slate-700/50 hover:border-cyan-500/80 rounded-sm overflow-hidden backdrop-blur-md transition-all duration-300 flex flex-col relative group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]"
                       >
                           <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                           
-                          {/* Image Area */}
-                          <div className="h-[200px] md:h-[260px] overflow-hidden relative border-b border-slate-800">
+                          {/* Image Area - Reduced height relative to card */}
+                          <div className="h-[35%] overflow-hidden relative border-b border-slate-800 shrink-0">
                               <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
                               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                               
-                              <div className="absolute top-4 right-4 bg-slate-950/90 border border-cyan-500/30 text-cyan-400 text-xs md:text-sm font-mono px-3 py-1.5 rounded backdrop-blur-sm">
+                              <div className="absolute top-4 right-4 bg-slate-950/90 border border-cyan-500/30 text-cyan-400 text-xs font-mono px-3 py-1 rounded backdrop-blur-sm">
                                   {project.year}
                               </div>
                           </div>
                           
-                          {/* Content */}
-                          <div className="p-6 md:p-8 flex-1 flex flex-col">
-                              <h3 className="text-xl md:text-3xl font-orbitron text-white mb-3 md:mb-4 group-hover:text-cyan-300 transition-colors tracking-wide truncate">
+                          {/* Content - Scrollable description */}
+                          <div className="p-5 md:p-6 flex-1 flex flex-col overflow-hidden">
+                              <h3 className="text-lg md:text-2xl font-orbitron text-white mb-2 md:mb-3 group-hover:text-cyan-300 transition-colors tracking-wide truncate shrink-0">
                                 {project.title}
                               </h3>
                               
-                              <p className="text-slate-300 text-sm md:text-base mb-6 md:mb-8 leading-relaxed flex-1 font-light border-l-2 border-slate-800 pl-4 group-hover:border-cyan-500/30 transition-colors line-clamp-4 md:line-clamp-none">
-                                {project.description}
-                              </p>
+                              <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 pr-2 mb-4">
+                                <p className="text-slate-300 text-sm md:text-base leading-relaxed font-light border-l-2 border-slate-800 pl-4 group-hover:border-cyan-500/30 transition-colors">
+                                    {project.description}
+                                </p>
+                              </div>
                               
-                              <div className="mt-auto">
-                                  <div className="flex flex-wrap gap-2 md:gap-3">
+                              <div className="mt-auto shrink-0 pt-2 border-t border-slate-800/50">
+                                  <div className="flex flex-wrap gap-2">
                                       {project.techStack.map(tech => (
                                           <span key={tech} className="text-[10px] md:text-xs uppercase tracking-wider font-mono px-2 py-1 bg-slate-800 text-slate-300 rounded-sm border border-slate-700 group-hover:border-cyan-500/30 group-hover:text-cyan-200 transition-colors">
                                               {tech}
@@ -197,14 +199,14 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
-      className={`snap-start snap-always w-full relative flex flex-col py-16 md:py-24 ${isScrollableSection ? 'min-h-[100dvh] h-auto' : 'min-h-[100dvh] justify-center overflow-hidden'}`}
+      className={`snap-start snap-always w-full relative flex flex-col ${data.type === 'projects' ? 'h-[100dvh] py-0 justify-center' : 'py-16 md:py-24'} ${isScrollableSection ? 'min-h-[100dvh] h-auto' : 'min-h-[100dvh] justify-center overflow-hidden'}`}
     >
         {/* Background Decorative Elements - reduced blur on mobile for perf */}
         <div className="absolute top-0 right-0 w-[200px] md:w-[600px] h-[200px] md:h-[600px] bg-cyan-500/5 rounded-full blur-[60px] md:blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-fuchsia-500/5 rounded-full blur-[50px] md:blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-        <div className="container mx-auto px-6 mb-12 md:mb-20 z-10">
-            <motion.div variants={itemVariants} className="mb-8 md:mb-12 ml-2 md:ml-8 border-l-4 md:border-l-8 border-cyan-500 pl-6 md:pl-10">
+        <div className={`container mx-auto px-6 z-10 ${data.type === 'projects' ? 'mb-4 md:mb-8 absolute top-8 left-0 right-0' : 'mb-12 md:mb-20'}`}>
+            <motion.div variants={itemVariants} className="ml-2 md:ml-8 border-l-4 md:border-l-8 border-cyan-500 pl-6 md:pl-10">
                 <h2 className="text-4xl sm:text-5xl md:text-7xl font-orbitron font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 uppercase tracking-tighter">
                     {data.title}
                 </h2>

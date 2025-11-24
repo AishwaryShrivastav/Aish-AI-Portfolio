@@ -13,14 +13,14 @@ export const SEED_SECTIONS: SectionData[] = [
   {
     "id": "projects-section",
     "type": "projects",
-    "title": "Projects & Platforms",
+    "title": "Projects",
     "subtitle": "Engineering Intelligence at Scale",
     "isVisible": true,
     "items": [
       {
         "id": "p1",
         "title": "MachineHack Platform",
-        "description": "Led the complete transformation of MachineHack SaaS from a monolithic ML hackathon product into a modular, AI-first, agentic ecosystem. Architected the migration to a serverless, event-driven system using Node.js, Python, MongoDB, and AWS. Expanded scope beyond ML to domain-specific and multi-agent hackathons while also managing product strategy and project execution.",
+        "description": "Transformed a monolithic ML product into a modular, AI-first SaaS ecosystem. Architected the migration to a serverless, event-driven system using Node.js, Python, and AWS.",
         "techStack": ["Agentic Architecture", "Python", "Node.js", "MongoDB", "Serverless", "AWS"],
         "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
         "year": "2025"
@@ -28,7 +28,7 @@ export const SEED_SECTIONS: SectionData[] = [
       {
         "id": "p4",
         "title": "Aerchain Platform",
-        "description": "Architected an **AI-powered B2B SaaS procurement platform** leveraging LLMs, RAG pipelines, and event-driven microservices. Developed intelligent agents for OCR, negotiation, and document workflows to enhance automation and simplify user journeys. Managed product, project, and engineering alignment for consistent delivery and AI adoption.",
+        "description": "Architected an AI-powered B2B SaaS procurement platform leveraging LLMs, RAG pipelines, and event-driven microservices. Developed intelligent agents for OCR, negotiation, and document workflows to enhance automation and simplify user journeys. Managed product, project, and engineering alignment for consistent delivery and AI adoption.",
         "techStack": ["Node.js", "React", "AI", "PostgreSQL", "RAG", "Agentic AI", "LLMs"],
         "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
         "year": "2024"
@@ -155,7 +155,7 @@ export const SEED_SECTIONS: SectionData[] = [
 
 export const SEED_DATA: SiteConfig = {
   hero: {
-    "title": "Aish",
+    "title": "AISH",
     "subtitle": "Building Agentic AI Systems, Scalable Architectures, and Empowered Teams.",
     "rotatingWords": ["Agentic AI", "Leadership", "System Design", "Product Strategy"],
     "experienceText": "9+ years building AI-driven, scalable products while leading teams with empathy and precision.",
@@ -164,17 +164,18 @@ export const SEED_DATA: SiteConfig = {
       "RAG",
       "Prompt Engineering",
       "TypeScript",
-      "Node.js (Nest)",
+      "NestJS",
       "Python",
-      "React, Next.js",
+      "React",
+      "Next.js",
       "Event-Driven Microservices",
       "Domain-Driven Design",
       "Clean Architecture",
       "AWS",
-      "Javascript",
+      "JavaScript",
       "MySQL",
       "MongoDB",
-      "Elastic Search",
+      "Elasticsearch",
       "Redis",
       "CI/CD"
     ],
@@ -184,7 +185,7 @@ export const SEED_DATA: SiteConfig = {
   },
   aiConfig: {
     "enabled": true,
-    "showWidget": true,
+    "showWidget": false,
     "provider": "openai",
     "systemPrompt": "You are a digital assistant for Aishwary Shrivastava — Principal Engineer and AI Systems Architect. You know his expertise in agentic architectures, RAG, LLM-driven products, leadership, and product strategy. He blends hands-on engineering with people-first leadership and believes management is about enabling people and self-mastery. He studied servant leadership at Sri Sathya Sai Institute and built teams from scratch at Llama and MachineHack, driving AI-first transformations.",
     "welcomeMessage": "Hi! Ask me about Aishwary’s AI systems, leadership philosophy, or the products he’s built.",
