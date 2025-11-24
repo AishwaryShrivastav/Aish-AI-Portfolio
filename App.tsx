@@ -73,7 +73,7 @@ function App() {
   };
 
   return (
-    <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-cyan-500/30 selection:text-cyan-100 overflow-x-hidden snap-y snap-proximity h-screen overflow-y-scroll no-scrollbar scroll-smooth">
+    <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-cyan-500/30 selection:text-cyan-100 overflow-x-hidden snap-y snap-mandatory h-screen overflow-y-scroll no-scrollbar scroll-smooth">
       
       {/* CMS Modal */}
       <AnimatePresence>
@@ -94,38 +94,47 @@ function App() {
       />
 
       {/* Hero Section */}
-      <section id="hero" className="snap-start snap-always min-h-[100dvh] w-full relative flex items-center justify-center overflow-hidden">
+      <section id="hero" className="snap-start snap-always min-h-[100dvh] w-full relative flex items-center justify-center overflow-hidden py-20">
          {/* Background Image with Overlay */}
          <div className="absolute inset-0 z-0">
-             <div className="absolute inset-0 bg-slate-950/70 z-10"></div>
-             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/80 z-10"></div>
-             <img src={siteData.hero.bgImage} className="w-full h-full object-cover opacity-60" alt="Hero Background" />
+             <div className="absolute inset-0 bg-slate-950/60 z-10"></div>
+             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-slate-950/80 z-10"></div>
+             <img src={siteData.hero.bgImage} className="w-full h-full object-cover opacity-80" alt="Hero Background" />
          </div>
          
          {/* Grid Overlay */}
-         <div className="absolute inset-0 z-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
+         <div className="absolute inset-0 z-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
+         
+         {/* AI Scanning Line Animation */}
+         <div className="absolute inset-0 z-0 pointer-events-none opacity-20 overflow-hidden">
+            <motion.div 
+                animate={{ top: ['0%', '100%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                className="absolute left-0 w-full h-[2px] bg-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.8)]"
+            />
+         </div>
          
          {/* Content */}
-         <div className="relative z-20 text-center px-4 w-full max-w-7xl mx-auto flex flex-col justify-center h-full pt-16 md:pt-0">
+         <div className="relative z-20 text-center px-6 w-full max-w-7xl mx-auto flex flex-col justify-center h-full pt-10 md:pt-0">
              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="flex flex-col items-center w-full"
              >
-                 {/* Main Title - No Container */}
-                 <h1 className="text-6xl sm:text-8xl md:text-[10rem] font-black font-orbitron text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-50 to-slate-400 mb-6 md:mb-4 drop-shadow-[0_0_25px_rgba(34,211,238,0.3)] tracking-tighter leading-[0.9] select-none">
+                 {/* Main Title - Increased Spacing */}
+                 <h1 className="text-6xl sm:text-8xl md:text-[9rem] lg:text-[11rem] font-black font-orbitron text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-slate-500 mb-8 md:mb-10 drop-shadow-[0_0_30px_rgba(34,211,238,0.2)] tracking-tighter leading-[0.85] select-none glitch-text">
                      {siteData.hero.title}
                  </h1>
 
-                 {/* Subtitle Line */}
-                 <p className="text-sm sm:text-xl md:text-2xl font-mono text-cyan-400/90 uppercase tracking-[0.3em] mb-4 md:mb-6 font-medium">
+                 {/* Subtitle Line - Larger Text */}
+                 <p className="text-base sm:text-lg md:text-2xl font-mono text-cyan-400 uppercase tracking-[0.25em] mb-6 md:mb-8 font-medium">
                      {siteData.hero.subtitle}
                  </p>
                  
                  {/* Rotating Text Line (Centered Below) */}
                  {siteData.hero.showRotatingText !== false && (
-                    <div className="h-10 md:h-16 overflow-hidden flex justify-center items-center mb-8 md:mb-10">
+                    <div className="h-12 md:h-20 overflow-hidden flex justify-center items-center mb-12 md:mb-16">
                         <AnimatePresence mode='wait'>
                            <motion.span
                                key={rotatingIndex}
@@ -133,7 +142,7 @@ function App() {
                                animate={{ opacity: 1, y: 0 }}
                                exit={{ opacity: 0, y: -20 }}
                                transition={{ duration: 0.4 }}
-                               className="font-bold font-orbitron text-fuchsia-400 text-2xl sm:text-3xl md:text-5xl drop-shadow-[0_0_15px_rgba(232,121,249,0.4)]"
+                               className="font-bold font-orbitron text-fuchsia-400 text-2xl sm:text-4xl md:text-6xl drop-shadow-[0_0_15px_rgba(232,121,249,0.5)]"
                            >
                                {siteData.hero.rotatingWords[rotatingIndex]}
                            </motion.span>
@@ -141,19 +150,19 @@ function App() {
                     </div>
                  )}
                  
-                 {/* Experience & Tech Chips */}
-                 <div className="mb-10 md:mb-16 max-w-xs sm:max-w-xl md:max-w-4xl mx-auto">
-                    <p className="text-slate-300 font-rajdhani text-lg sm:text-xl md:text-3xl mb-8 tracking-wide font-light leading-relaxed">
+                 {/* Experience & Tech Chips - More Space */}
+                 <div className="mb-12 md:mb-20 max-w-xs sm:max-w-xl md:max-w-4xl mx-auto">
+                    <p className="text-slate-200 font-rajdhani text-lg sm:text-2xl md:text-3xl mb-10 tracking-wide font-light leading-relaxed">
                         {siteData.hero.experienceText}
                     </p>
-                    <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+                    <div className="flex flex-wrap justify-center gap-3 md:gap-4">
                         {siteData.hero.techStack.map((tech, i) => (
                              <motion.div 
                                 key={i}
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.2 + (i * 0.05) }}
-                                className="px-3 py-1.5 md:px-4 md:py-1.5 border border-cyan-500/20 text-cyan-200/80 rounded-sm text-[10px] md:text-xs font-mono uppercase tracking-widest hover:border-cyan-400/60 hover:text-cyan-100 hover:bg-cyan-950/30 transition-all cursor-default"
+                                className="px-4 py-2 border border-cyan-500/20 text-cyan-100/90 rounded text-xs md:text-sm font-mono uppercase tracking-widest hover:border-cyan-400 hover:text-white hover:bg-cyan-900/40 transition-all cursor-default backdrop-blur-sm"
                              >
                                 {tech}
                              </motion.div>
@@ -161,26 +170,26 @@ function App() {
                     </div>
                  </div>
                  
-                 {/* Social Actions */}
-                 <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+                 {/* Social Actions - Increased Gap */}
+                 <div className="flex flex-wrap justify-center gap-8 md:gap-12">
                     {siteData.footer.socials.linkedin && (
-                        <a href={siteData.footer.socials.linkedin} target="_blank" rel="noreferrer" className="text-slate-500 hover:text-cyan-400 transition-all hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">
-                            <Linkedin size={28} className="md:w-8 md:h-8" />
+                        <a href={siteData.footer.socials.linkedin} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-cyan-400 transition-all hover:scale-125 hover:drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">
+                            <Linkedin size={32} className="md:w-10 md:h-10" />
                         </a>
                     )}
                     {siteData.footer.socials.github && (
-                        <a href={siteData.footer.socials.github} target="_blank" rel="noreferrer" className="text-slate-500 hover:text-white transition-all hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
-                            <Github size={28} className="md:w-8 md:h-8" />
+                        <a href={siteData.footer.socials.github} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all hover:scale-125 hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
+                            <Github size={32} className="md:w-10 md:h-10" />
                         </a>
                     )}
                     {siteData.footer.socials.twitter && (
-                        <a href={siteData.footer.socials.twitter} target="_blank" rel="noreferrer" className="text-slate-500 hover:text-sky-400 transition-all hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]">
-                            <Twitter size={28} className="md:w-8 md:h-8" />
+                        <a href={siteData.footer.socials.twitter} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-sky-400 transition-all hover:scale-125 hover:drop-shadow-[0_0_10px_rgba(56,189,248,0.8)]">
+                            <Twitter size={32} className="md:w-10 md:h-10" />
                         </a>
                     )}
                     {siteData.footer.socials.email && (
-                        <a href={siteData.footer.socials.email} className="text-slate-500 hover:text-fuchsia-400 transition-all hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(232,121,249,0.5)]">
-                            <Mail size={28} className="md:w-8 md:h-8" />
+                        <a href={siteData.footer.socials.email} className="text-slate-400 hover:text-fuchsia-400 transition-all hover:scale-125 hover:drop-shadow-[0_0_10px_rgba(232,121,249,0.8)]">
+                            <Mail size={32} className="md:w-10 md:h-10" />
                         </a>
                     )}
                  </div>
@@ -188,8 +197,8 @@ function App() {
          </div>
 
          {/* Scroll Indicator */}
-         <div className="absolute bottom-6 md:bottom-10 z-20 animate-bounce text-cyan-500/50 hidden h-screen-sm:block pointer-events-none">
-            <ChevronDown size={32} className="md:w-12 md:h-12 drop-shadow-[0_0_10px_rgba(6,182,212,0.4)]" />
+         <div className="absolute bottom-6 md:bottom-12 z-20 animate-bounce text-cyan-500/50 hidden md:block pointer-events-none">
+            <ChevronDown size={40} className="drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]" />
          </div>
       </section>
 
@@ -199,68 +208,68 @@ function App() {
       ))}
 
       {/* Connect / Footer Section */}
-      <section id="footer" className="snap-start snap-always min-h-[60dvh] md:min-h-screen w-full relative flex flex-col items-center justify-center bg-slate-950 border-t border-slate-900/50 py-12">
-          <div className="text-center px-6 max-w-3xl w-full">
+      <section id="footer" className="snap-start snap-always min-h-[60dvh] md:min-h-screen w-full relative flex flex-col items-center justify-center bg-slate-950 border-t border-slate-900/50 py-20">
+          <div className="text-center px-6 max-w-4xl w-full">
               <motion.h2 
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                className="text-3xl sm:text-4xl md:text-6xl font-orbitron font-bold text-white mb-6 md:mb-8 tracking-tight"
+                className="text-4xl sm:text-5xl md:text-7xl font-orbitron font-bold text-white mb-8 md:mb-12 tracking-tight"
               >
                   {siteData.footer.title}
               </motion.h2>
-              <p className="text-lg md:text-xl text-slate-400 mb-8 md:mb-12 font-light break-words leading-relaxed">
+              <p className="text-xl md:text-2xl text-slate-400 mb-12 md:mb-16 font-light break-words leading-relaxed">
                   {siteData.footer.message}
               </p>
               
-              <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-10 md:mb-16">
+              <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-16 md:mb-24">
                   {siteData.footer.socials.github && (
                       <a href={siteData.footer.socials.github} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white hover:scale-125 transition-all">
-                          <Github size={32} className="md:w-10 md:h-10" />
+                          <Github size={36} className="md:w-12 md:h-12" />
                       </a>
                   )}
                   {siteData.footer.socials.linkedin && (
                       <a href={siteData.footer.socials.linkedin} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-cyan-400 hover:scale-125 transition-all">
-                          <Linkedin size={32} className="md:w-10 md:h-10" />
+                          <Linkedin size={36} className="md:w-12 md:h-12" />
                       </a>
                   )}
                   {siteData.footer.socials.twitter && (
                       <a href={siteData.footer.socials.twitter} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-sky-400 hover:scale-125 transition-all">
-                          <Twitter size={32} className="md:w-10 md:h-10" />
+                          <Twitter size={36} className="md:w-12 md:h-12" />
                       </a>
                   )}
                   {siteData.footer.socials.email && (
                       <a href={siteData.footer.socials.email} className="text-slate-600 hover:text-fuchsia-400 hover:scale-125 transition-all">
-                          <Mail size={32} className="md:w-10 md:h-10" />
+                          <Mail size={36} className="md:w-12 md:h-12" />
                       </a>
                   )}
               </div>
 
-              <div className="text-slate-700 font-mono text-[10px] md:text-xs tracking-widest relative">
+              <div className="text-slate-700 font-mono text-xs md:text-sm tracking-widest relative">
                   SYSTEM STATUS: ONLINE <br/>
                   © {new Date().getFullYear()} {siteData.hero.title}. ALL RIGHTS RESERVED.
                   
                   {/* Admin Footer Trigger */}
-                  <div className="absolute top-0 right-0 md:-right-20">
+                  <div className="absolute top-0 right-0 md:-right-32">
                     <button 
                         onClick={() => setShowFooterAuth(!showFooterAuth)}
-                        className="p-1 text-slate-800 hover:text-cyan-900 transition-colors"
+                        className="p-2 text-slate-800 hover:text-cyan-900 transition-colors"
                         title="System Config"
                     >
-                        <Lock size={12} />
+                        <Lock size={14} />
                     </button>
                     {showFooterAuth && (
                         <div className="absolute bottom-full right-0 mb-2 bg-slate-900 border border-slate-700 p-2 rounded flex items-center shadow-xl z-50">
                             <input 
                                 type="password" 
-                                className="bg-slate-950 border border-slate-700 text-xs text-cyan-500 w-24 px-1 py-0.5 rounded outline-none"
+                                className="bg-slate-950 border border-slate-700 text-xs text-cyan-500 w-24 px-2 py-1 rounded outline-none"
                                 placeholder="CODE"
                                 value={footerAuthCode}
                                 onChange={(e) => setFooterAuthCode(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && submitFooterAuth()}
                                 autoFocus
                             />
-                            <button onClick={submitFooterAuth} className="ml-1 text-green-500 hover:text-green-400"><Unlock size={12}/></button>
-                            <button onClick={() => setShowFooterAuth(false)} className="ml-1 text-red-500 hover:text-red-400"><X size={12}/></button>
+                            <button onClick={submitFooterAuth} className="ml-2 text-green-500 hover:text-green-400"><Unlock size={14}/></button>
+                            <button onClick={() => setShowFooterAuth(false)} className="ml-2 text-red-500 hover:text-red-400"><X size={14}/></button>
                         </div>
                     )}
                   </div>

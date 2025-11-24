@@ -30,7 +30,7 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
 
   const scrollProjects = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const scrollAmount = direction === 'left' ? -350 : 350;
+      const scrollAmount = direction === 'left' ? -400 : 400;
       scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -44,58 +44,58 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
              <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-slate-950 z-10 pointer-events-none hidden md:block"></div>
              
              {/* Navigation Buttons */}
-             <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 w-full justify-between px-4 z-20 pointer-events-none">
+             <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 w-full justify-between px-6 z-20 pointer-events-none">
                 <button 
                   onClick={() => scrollProjects('left')}
-                  className="pointer-events-auto p-3 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:scale-110"
+                  className="pointer-events-auto p-4 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:scale-110"
                 >
-                  <ChevronLeft size={24} />
+                  <ChevronLeft size={28} />
                 </button>
                 <button 
                   onClick={() => scrollProjects('right')}
-                  className="pointer-events-auto p-3 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:scale-110"
+                  className="pointer-events-auto p-4 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:scale-110"
                 >
-                  <ChevronRight size={24} />
+                  <ChevronRight size={28} />
                 </button>
              </div>
 
              <div 
                 ref={scrollContainerRef}
-                className="w-full overflow-x-auto pb-8 md:pb-12 pt-4 no-scrollbar snap-x snap-mandatory px-4 md:px-20"
+                className="w-full overflow-x-auto pb-12 md:pb-16 pt-6 no-scrollbar snap-x snap-mandatory px-6 md:px-24"
              >
-                 <div className="flex space-x-4 md:space-x-10 min-w-max">
+                 <div className="flex space-x-6 md:space-x-12 min-w-max">
                     {(data.items as Project[])?.map((project) => (
                       <motion.div 
                         key={project.id}
                         variants={itemVariants}
-                        className="snap-center w-[85vw] sm:w-[60vw] md:w-[500px] bg-slate-900/60 border border-slate-700/50 hover:border-cyan-500/80 rounded-sm overflow-hidden backdrop-blur-md transition-all duration-300 flex flex-col relative group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]"
+                        className="snap-center w-[85vw] sm:w-[65vw] md:w-[550px] bg-slate-900/60 border border-slate-700/50 hover:border-cyan-500/80 rounded-sm overflow-hidden backdrop-blur-md transition-all duration-300 flex flex-col relative group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]"
                       >
-                          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                           
                           {/* Image Area */}
-                          <div className="h-[180px] md:h-[220px] overflow-hidden relative border-b border-slate-800">
-                              <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-100" />
+                          <div className="h-[200px] md:h-[260px] overflow-hidden relative border-b border-slate-800">
+                              <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
                               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                               
-                              <div className="absolute top-4 right-4 bg-slate-950/80 border border-cyan-500/30 text-cyan-400 text-[10px] md:text-xs font-mono px-2 md:px-3 py-1 rounded backdrop-blur-sm">
+                              <div className="absolute top-4 right-4 bg-slate-950/90 border border-cyan-500/30 text-cyan-400 text-xs md:text-sm font-mono px-3 py-1.5 rounded backdrop-blur-sm">
                                   {project.year}
                               </div>
                           </div>
                           
                           {/* Content */}
-                          <div className="p-4 md:p-6 flex-1 flex flex-col">
-                              <h3 className="text-lg md:text-2xl font-orbitron text-white mb-2 md:mb-3 group-hover:text-cyan-300 transition-colors tracking-wide truncate">
+                          <div className="p-6 md:p-8 flex-1 flex flex-col">
+                              <h3 className="text-xl md:text-3xl font-orbitron text-white mb-3 md:mb-4 group-hover:text-cyan-300 transition-colors tracking-wide truncate">
                                 {project.title}
                               </h3>
                               
-                              <p className="text-slate-400 text-xs md:text-sm mb-4 md:mb-6 leading-relaxed flex-1 font-light border-l-2 border-slate-800 pl-3 group-hover:border-cyan-500/30 transition-colors line-clamp-4 md:line-clamp-none">
+                              <p className="text-slate-300 text-sm md:text-base mb-6 md:mb-8 leading-relaxed flex-1 font-light border-l-2 border-slate-800 pl-4 group-hover:border-cyan-500/30 transition-colors line-clamp-4 md:line-clamp-none">
                                 {project.description}
                               </p>
                               
                               <div className="mt-auto">
-                                  <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                  <div className="flex flex-wrap gap-2 md:gap-3">
                                       {project.techStack.map(tech => (
-                                          <span key={tech} className="text-[9px] md:text-[10px] uppercase tracking-wider font-mono px-1.5 py-0.5 md:px-2 md:py-1 bg-slate-800 text-slate-300 rounded-sm border border-slate-700 group-hover:border-cyan-500/30 group-hover:text-cyan-200 transition-colors">
+                                          <span key={tech} className="text-[10px] md:text-xs uppercase tracking-wider font-mono px-2 py-1 bg-slate-800 text-slate-300 rounded-sm border border-slate-700 group-hover:border-cyan-500/30 group-hover:text-cyan-200 transition-colors">
                                               {tech}
                                           </span>
                                       ))}
@@ -111,28 +111,28 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
 
       case 'experience':
         return (
-          <div className="max-w-5xl mx-auto px-4 w-full pb-10 md:pb-20">
-            <div className="relative border-l border-cyan-500/30 ml-2 md:ml-0 space-y-8 md:space-y-12">
+          <div className="max-w-6xl mx-auto px-4 w-full pb-16 md:pb-32">
+            <div className="relative border-l-2 border-cyan-500/30 ml-3 md:ml-6 space-y-10 md:space-y-16">
               {(data.items as Experience[])?.map((exp) => (
-                <motion.div key={exp.id} variants={itemVariants} className="relative pl-6 md:pl-12">
+                <motion.div key={exp.id} variants={itemVariants} className="relative pl-8 md:pl-16">
                    {/* Timeline dot */}
-                   <span className="absolute -left-[5px] top-1 md:top-0 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-cyan-500 shadow-[0_0_10px_#06b6d4]"></span>
+                   <span className="absolute -left-[9px] top-1.5 md:top-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-cyan-500 shadow-[0_0_15px_#06b6d4] border-4 border-slate-950"></span>
                    
-                   <div className="bg-slate-900/50 border border-slate-800 p-4 md:p-6 rounded-lg hover:bg-slate-800/50 transition-colors">
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2 gap-1">
-                        <h3 className="text-lg md:text-xl font-bold text-white">
+                   <div className="bg-slate-900/50 border border-slate-800 p-6 md:p-8 rounded-lg hover:bg-slate-800/50 transition-colors">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
+                        <h3 className="text-xl md:text-2xl font-bold text-white">
                           {exp.role}
                         </h3>
-                        <span className="text-cyan-400 font-mono text-xs md:text-sm bg-cyan-950/30 px-2 md:px-3 py-0.5 md:py-1 rounded border border-cyan-500/20 inline-block w-fit">
+                        <span className="text-cyan-400 font-mono text-xs md:text-sm bg-cyan-950/40 px-3 py-1 rounded border border-cyan-500/20 inline-block w-fit whitespace-nowrap">
                           {exp.period}
                         </span>
                       </div>
-                      <h4 className="text-sm md:text-lg text-slate-400 font-orbitron mb-3 md:mb-4">{exp.company}</h4>
-                      <p className="text-slate-300 leading-relaxed text-sm md:text-base mb-3 md:mb-4 font-light">{exp.description}</p>
+                      <h4 className="text-base md:text-xl text-slate-400 font-orbitron mb-4 md:mb-6">{exp.company}</h4>
+                      <p className="text-slate-300 leading-relaxed text-base md:text-lg mb-4 md:mb-6 font-light max-w-4xl">{exp.description}</p>
                       
                       {exp.reportsTo && (
-                        <div className="flex items-center pt-3 border-t border-slate-800 text-[10px] md:text-xs text-slate-500 font-mono">
-                            <User size={10} className="mr-1.5 md:mr-2 text-cyan-600" />
+                        <div className="flex items-center pt-4 border-t border-slate-800 text-xs md:text-sm text-slate-500 font-mono">
+                            <User size={14} className="mr-2 text-cyan-600" />
                             <span>Reported to: <span className="text-cyan-400/80">{exp.reportsTo}</span></span>
                         </div>
                       )}
@@ -145,15 +145,15 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
       
       case 'education':
         return (
-             <div className="max-w-6xl mx-auto px-4 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 pb-10 md:pb-20">
+             <div className="max-w-7xl mx-auto px-4 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pb-16 md:pb-32">
                 {(data.items as Education[])?.map((edu) => (
-                    <motion.div key={edu.id} variants={itemVariants} className="bg-slate-900/30 border border-slate-700 p-4 md:p-6 rounded-xl hover:border-cyan-500/50 transition-all group">
-                        <Award size={24} className="text-cyan-500 mb-3 md:mb-4 group-hover:scale-110 transition-transform md:w-8 md:h-8" />
-                        <h3 className="text-lg md:text-xl text-white font-bold mb-1">{edu.degree}</h3>
-                        <p className="text-fuchsia-400 text-xs md:text-sm mb-3 md:mb-4 font-mono">{edu.institution}</p>
-                        <div className="w-full h-px bg-slate-800 my-3 md:my-4"></div>
-                        <span className="text-slate-500 text-[10px] md:text-xs uppercase tracking-widest flex items-center">
-                            <Calendar size={10} className="mr-2" /> Class of {edu.year}
+                    <motion.div key={edu.id} variants={itemVariants} className="bg-slate-900/30 border border-slate-700 p-6 md:p-8 rounded-xl hover:border-cyan-500/50 transition-all group hover:bg-slate-800/30">
+                        <Award size={32} className="text-cyan-500 mb-4 md:mb-6 group-hover:scale-110 transition-transform md:w-10 md:h-10" />
+                        <h3 className="text-xl md:text-2xl text-white font-bold mb-2">{edu.degree}</h3>
+                        <p className="text-fuchsia-400 text-sm md:text-base mb-4 md:mb-6 font-mono">{edu.institution}</p>
+                        <div className="w-full h-px bg-slate-800 my-4"></div>
+                        <span className="text-slate-500 text-xs md:text-sm uppercase tracking-widest flex items-center">
+                            <Calendar size={14} className="mr-2" /> Class of {edu.year}
                         </span>
                     </motion.div>
                 ))}
@@ -162,11 +162,11 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
 
       case 'philosophy':
         return (
-          <div className="max-w-5xl mx-auto px-4 md:px-6 pb-10 md:pb-20">
-             <div className="relative bg-gradient-to-br from-slate-900/60 to-slate-900/20 border-l-4 border-cyan-500 p-6 md:p-10 rounded-r-2xl backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
-                <Quote className="absolute top-4 right-4 md:top-6 md:right-8 text-cyan-500/10 w-16 h-16 md:w-32 md:h-32 rotate-180" />
-                <div className="prose prose-sm sm:prose-base md:prose-lg prose-invert max-w-none relative z-10">
-                    <p className="whitespace-pre-wrap text-slate-300 font-light leading-relaxed tracking-wide text-justify md:text-left">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 pb-16 md:pb-32">
+             <div className="relative bg-gradient-to-br from-slate-900/80 to-slate-900/30 border-l-4 border-cyan-500 p-8 md:p-14 rounded-r-2xl backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+                <Quote className="absolute top-6 right-6 md:top-10 md:right-12 text-cyan-500/10 w-24 h-24 md:w-40 md:h-40 rotate-180" />
+                <div className="prose prose-base sm:prose-lg md:prose-2xl prose-invert max-w-none relative z-10">
+                    <p className="whitespace-pre-wrap text-slate-200 font-light leading-relaxed tracking-wide text-justify md:text-left">
                         {data.content}
                     </p>
                 </div>
@@ -176,8 +176,8 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
 
       case 'custom':
         return (
-          <div className="max-w-4xl mx-auto px-4 md:px-6 text-left pb-10 md:pb-20">
-             <div className="prose prose-sm sm:prose-base md:prose-xl prose-invert prose-cyan max-w-none">
+          <div className="max-w-5xl mx-auto px-4 md:px-6 text-left pb-16 md:pb-32">
+             <div className="prose prose-base sm:prose-lg md:prose-2xl prose-invert prose-cyan max-w-none">
                 <div className="whitespace-pre-wrap text-slate-300 font-light leading-relaxed tracking-wide">
                     {data.content}
                 </div>
@@ -197,19 +197,19 @@ const SectionRenderer: React.FC<Props> = ({ data }) => {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
-      className={`snap-start snap-always w-full relative flex flex-col py-12 md:py-20 ${isScrollableSection ? 'min-h-[100dvh] h-auto' : 'min-h-[100dvh] justify-center overflow-hidden'}`}
+      className={`snap-start snap-always w-full relative flex flex-col py-16 md:py-24 ${isScrollableSection ? 'min-h-[100dvh] h-auto' : 'min-h-[100dvh] justify-center overflow-hidden'}`}
     >
         {/* Background Decorative Elements - reduced blur on mobile for perf */}
-        <div className="absolute top-0 right-0 w-[200px] md:w-[500px] h-[200px] md:h-[500px] bg-cyan-500/5 rounded-full blur-[50px] md:blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[150px] md:w-[300px] h-[150px] md:h-[300px] bg-fuchsia-500/5 rounded-full blur-[40px] md:blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-[200px] md:w-[600px] h-[200px] md:h-[600px] bg-cyan-500/5 rounded-full blur-[60px] md:blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-fuchsia-500/5 rounded-full blur-[50px] md:blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-        <div className="container mx-auto px-4 mb-8 md:mb-12 z-10">
-            <motion.div variants={itemVariants} className="mb-6 md:mb-10 ml-2 md:ml-12 border-l-2 md:border-l-4 border-cyan-500 pl-4 md:pl-6">
-                <h2 className="text-3xl sm:text-4xl md:text-6xl font-orbitron font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 uppercase tracking-tighter">
+        <div className="container mx-auto px-6 mb-12 md:mb-20 z-10">
+            <motion.div variants={itemVariants} className="mb-8 md:mb-12 ml-2 md:ml-8 border-l-4 md:border-l-8 border-cyan-500 pl-6 md:pl-10">
+                <h2 className="text-4xl sm:text-5xl md:text-7xl font-orbitron font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 uppercase tracking-tighter">
                     {data.title}
                 </h2>
                 {data.subtitle && (
-                    <p className="text-cyan-400 font-mono mt-1 md:mt-2 tracking-widest uppercase text-xs md:text-base">
+                    <p className="text-cyan-400 font-mono mt-2 md:mt-4 tracking-widest uppercase text-sm md:text-lg font-medium">
                         // {data.subtitle}
                     </p>
                 )}

@@ -178,7 +178,8 @@ export const SEED_DATA: SiteConfig = {
       "Redis",
       "CI/CD"
     ],
-    "bgImage": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=3000&auto=format&fit=crop",
+    // High-tech abstract neural network background
+    "bgImage": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=3270&auto=format&fit=crop",
     "showRotatingText": true
   },
   aiConfig: {
