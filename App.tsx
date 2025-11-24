@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, Twitter, ChevronDown } from 'lucide-react';
@@ -57,7 +58,7 @@ function App() {
   };
 
   return (
-    <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-cyan-500/30 selection:text-cyan-100">
+    <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-cyan-500/30 selection:text-cyan-100 overflow-x-hidden">
       
       {/* CMS Modal */}
       <AnimatePresence>
@@ -100,29 +101,29 @@ function App() {
                      {siteData.hero.title}
                  </h1>
 
-                 {/* Rotating One-Liner (Fixed Alignment) */}
-                 <div className="w-full text-lg sm:text-2xl md:text-3xl font-mono text-cyan-400 mb-6 md:mb-8 min-h-[3rem] flex items-center justify-center">
-                    <div className="flex-1 text-right pr-3 md:pr-4">
-                        <span className="opacity-80 uppercase tracking-widest whitespace-nowrap">{siteData.hero.subtitle}</span>
-                    </div>
-                    <div className="flex-1 text-left pl-3 md:pl-4">
-                        <AnimatePresence mode='wait'>
-                            <motion.span
-                                key={rotatingIndex}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.5 }}
-                                className="font-bold text-fuchsia-400 bg-fuchsia-950/30 px-2 py-1 rounded border border-fuchsia-500/20 inline-block truncate max-w-full"
-                            >
-                                {siteData.hero.rotatingWords[rotatingIndex]}
-                            </motion.span>
-                        </AnimatePresence>
-                    </div>
+                 {/* Subtitle Line */}
+                 <p className="text-lg sm:text-xl md:text-2xl font-mono text-cyan-400 opacity-80 uppercase tracking-widest mb-4">
+                     {siteData.hero.subtitle}
+                 </p>
+                 
+                 {/* Rotating Text Line (Centered Below) */}
+                 <div className="h-10 md:h-12 overflow-hidden flex justify-center items-center mb-8 md:mb-12">
+                     <AnimatePresence mode='wait'>
+                        <motion.span
+                            key={rotatingIndex}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.5 }}
+                            className="font-bold text-fuchsia-400 text-xl sm:text-2xl md:text-3xl bg-fuchsia-950/30 px-4 py-2 rounded border border-fuchsia-500/20 inline-block"
+                        >
+                            {siteData.hero.rotatingWords[rotatingIndex]}
+                        </motion.span>
+                    </AnimatePresence>
                  </div>
                  
                  {/* Experience & Tech Chips */}
-                 <div className="mb-8 md:mb-12 max-w-xs sm:max-w-xl md:max-w-3xl mx-auto">
+                 <div className="mb-8 md:mb-12 max-w-xs sm:max-w-xl md:max-w-4xl mx-auto">
                     <p className="text-slate-300 font-rajdhani text-base sm:text-lg md:text-xl mb-6 tracking-wide border-b border-slate-800 pb-2 inline-block">
                         {siteData.hero.experienceText}
                     </p>

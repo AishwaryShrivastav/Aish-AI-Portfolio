@@ -3,56 +3,72 @@ import { SiteConfig, SectionData } from './types';
 
 export const SEED_SECTIONS: SectionData[] = [
   {
+    "id": "philosophy-section",
+    "type": "philosophy",
+    "title": "Engineering Philosophy",
+    "subtitle": "Hands-on Leadership, AI-First Thinking",
+    "isVisible": true,
+    "content": "I believe true leadership is grounded in **hands-on development** and **servant leadership**. Real management isn’t about controlling engineering, it’s about **people management and self-management**. My guiding philosophy was shaped by the **Sri Sathya Sai National Leadership Program**, where I learned the power of leading by example, empathy, and service.\n\nAt **Llama**, where leadership development was the company’s core offering for global organizations like LinkedIn, BCG, and McKinsey, I deeply experienced how technology and leadership can coexist to create meaningful impact.\n\nThis understanding continues to influence how I lead teams by fostering clarity, autonomy, and purpose."
+  },
+  {
     "id": "projects-section",
     "type": "projects",
-    "title": "Selected Works",
-    "subtitle": "My Portfolio",
+    "title": "Projects & Platforms",
+    "subtitle": "Engineering Intelligence at Scale",
     "isVisible": true,
     "items": [
       {
         "id": "p1",
-        "title": "Aerchain Platform",
-        "description": "Led migration from a legacy system to a microservices-based infrastructure using Node.js, React, and PostgreSQL. Built CI/CD pipelines and monitoring tools for high scalability.",
-        "techStack": ["Node.js", "React", "AI", "PostgreSQL"],
-        "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-        "year": "2024"
+        "title": "MachineHack Platform",
+        "description": "Led the complete transformation of MachineHack from a monolithic ML hackathon product into a modular, AI-first, agentic ecosystem. Architected the migration to a serverless, event-driven system using Node.js, Python, MongoDB, and AWS. Expanded scope beyond ML to domain-specific and multi-agent hackathons while also managing product strategy and project execution.",
+        "techStack": ["Agentic Architecture", "Python", "Node.js", "MongoDB", "Serverless", "AWS"],
+        "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+        "year": "2025"
       },
       {
         "id": "p2",
+        "title": "Ask Llama AI Chatbot",
+        "description": "Built an AI-first conversational assistant with OpenAI APIs and Vue.js. Designed multi-agent reasoning and feedback loops, enabling natural dialogue and contextual learning. Managed both product direction and engineering delivery from concept to deployment.",
+        "techStack": ["Vue.js", "Nest.js", "OpenAI", "LangChain", "RAG"],
+        "imageUrl": "https://images.unsplash.com/photo-1535378433864-825377bc356c?q=80&w=2083&auto=format&fit=crop",
+        "year": "2024"
+      },
+      {
+        "id": "p3",
         "title": "Learning Management System (LMS)",
-        "description": "Architected and deployed a scalable LMS using React, Vue, and Python with AWS infrastructure and robust sprint management.",
+        "description": "Architected and shipped a multi-tenant, scalable LMS built with React, Vue, and Python on AWS. Designed for high concurrency and modular expansion, enabling smooth course management and analytics for enterprise clients.",
         "techStack": ["React", "Vue", "Python", "AWS"],
         "imageUrl": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2074&auto=format&fit=crop",
         "year": "2023"
       },
       {
-        "id": "p3",
-        "title": "Ask Llama AI Chatbot",
-        "description": "Designed architecture and UI/UX for an OpenAI-powered chatbot, integrating intelligent conversational capabilities into enterprise workflows.",
-        "techStack": ["Vue.js", "Nest.js", "OpenAI"],
-        "imageUrl": "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2006&auto=format&fit=crop",
+        "id": "p4",
+        "title": "Aerchain Platform",
+        "description": "Architected an **AI-powered, agentic procurement platform** leveraging LLMs, RAG pipelines, and event-driven microservices. Developed intelligent agents for OCR, negotiation, and document workflows to enhance automation and simplify user journeys. Managed product, project, and engineering alignment for consistent delivery and AI adoption.",
+        "techStack": ["Node.js", "React", "AI", "PostgreSQL", "RAG", "Agentic AI", "LLMs"],
+        "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
         "year": "2024"
       },
       {
-        "id": "p4",
+        "id": "p5",
         "title": "Slack Bot for LMS",
-        "description": "Developed a Slack-integrated chatbot to automate LMS workflows and notifications with seamless backend integration.",
+        "description": "Developed a Slack-integrated automation bot to handle LMS notifications, real-time course updates, and workflow management for instructors and learners.",
         "techStack": ["JavaScript", "Node.js", "Slack API"],
         "imageUrl": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop",
         "year": "2023"
       },
       {
-        "id": "p5",
+        "id": "p6",
         "title": "Steve Madden eCommerce",
-        "description": "Built automation, REST APIs, and multiple regional storefronts on Apache OFBiz with Vue.js for Steve Madden’s eCommerce operations.",
+        "description": "Developed automation flows, REST APIs, and regional storefronts for the Steve Madden eCommerce platform using Apache OFBiz and Vue.js, integrating payments and logistics systems.",
         "techStack": ["Apache OFBiz", "Vue.js"],
         "imageUrl": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop",
         "year": "2021"
       },
       {
-        "id": "p6",
+        "id": "p7",
         "title": "AAPA B2B Marketplace",
-        "description": "Developed a scalable B2B marketplace for automotive parts integrating secure payment and shipping APIs.",
+        "description": "Built a B2B marketplace for automotive parts integrating payment and shipping APIs for 10+ stakeholders, designed for scalability and high availability.",
         "techStack": ["Apache OFBiz", "JavaScript", "Vue.js"],
         "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
         "year": "2020"
@@ -62,16 +78,16 @@ export const SEED_SECTIONS: SectionData[] = [
   {
     "id": "experience-section",
     "type": "experience",
-    "title": "Experience",
-    "subtitle": "My Journey",
+    "title": "Professional Experience",
+    "subtitle": "Leading Through Action and Architecture",
     "isVisible": true,
     "items": [
       {
         "id": "e1",
         "role": "Principal Engineer",
-        "company": "Machine Hack",
+        "company": "Machine Hack (AIM Media House)",
         "period": "May 2025 - Present",
-        "description": "Leading AI-first platform development under AIM Media House. Managing a team of nine and driving architecture, product strategy, and stakeholder management.",
+        "description": "Driving MachineHack’s evolution into an AI-first, agentic platform. Leading architecture, engineering, product, and project management simultaneously. Spearheading the migration from monolithic design to modular, event-driven systems using Node.js, Python, and MongoDB. Mentoring teams to integrate AI across product lifecycles and operational workflows.",
         "reportsTo": "Founder"
       },
       {
@@ -79,15 +95,15 @@ export const SEED_SECTIONS: SectionData[] = [
         "role": "Tech Lead",
         "company": "Aerchain",
         "period": "Jun 2024 - May 2025",
-        "description": "Led AI-driven procurement platform scaling with microservices and microfrontends. Architected OCR, negotiation, and automation agents.",
+        "description": "Led development of an AI-powered procurement platform leveraging LLMs, RAG pipelines, and agentic automation. Designed and implemented agents for OCR, negotiation, and document workflows, improving decision-making and user efficiency. Managed product direction, cross-functional collaboration, and full-scale technical execution.",
         "reportsTo": "CTO"
       },
       {
         "id": "e3",
-        "role": "Engineering Consultant / Head of Engineering",
+        "role": "Head of Engineering / Consultant",
         "company": "Llama",
         "period": "Nov 2021 - Present",
-        "description": "Defined tech vision, strategy, and infrastructure. Built and led engineering team, fostering innovation and aligning business with technology.",
+        "description": "Built the tech team and product suite from the ground up. Launched key products like the LMS, Ask Llama bot, and Slack bot. Managed both engineering and product strategy, defining the tech roadmap and delivery cycles. The company specialized in leadership training for clients such as LinkedIn, BCG, and McKinsey, reinforcing my belief in people-centric engineering.",
         "reportsTo": "Co-founder"
       },
       {
@@ -95,23 +111,15 @@ export const SEED_SECTIONS: SectionData[] = [
         "role": "Technical Consultant / Senior Engineer / Engineer",
         "company": "HotWax Systems",
         "period": "Jan 2016 - Nov 2021",
-        "description": "Developed scalable ERP and retail systems for US clients. Designed APIs, led solution design, mentored engineers, and enhanced omnichannel fulfillment.",
+        "description": "Delivered large-scale ERP and retail systems for global clients. Designed scalable APIs, integrated Solr search, and automated workflows. Mentored developers and improved system performance through modular architecture.",
         "reportsTo": "CTO"
       },
       {
         "id": "e5",
-        "role": "Founder",
-        "company": "Pinakiney Motives",
-        "period": "Jun 2015 - Jan 2016",
-        "description": "Built a bulk WhatsApp marketing tool to automate communications for small businesses before regulations limited operations.",
-        "reportsTo": "Self"
-      },
-      {
-        "id": "e6",
-        "role": "Blogger",
+        "role": "Founder & Blogger",
         "company": "HackingGeek",
-        "period": "May 2013 - Dec 2014",
-        "description": "Authored Linux and cybersecurity blogs, growing an audience of over 3,000 readers.",
+        "period": "May 2013 - Jan 2016",
+        "description": "Founded a cybersecurity and tech blog that grew to 3,000+ readers. Created automation tools for digital marketing and shared insights on cybersecurity, Linux, and product growth.",
         "reportsTo": "Self"
       }
     ]
@@ -119,8 +127,8 @@ export const SEED_SECTIONS: SectionData[] = [
   {
     "id": "education-section",
     "type": "education",
-    "title": "Education",
-    "subtitle": "Academic Background",
+    "title": "Education & Certifications",
+    "subtitle": "Learning That Shapes Leadership",
     "isVisible": true,
     "items": [
       {
@@ -142,31 +150,41 @@ export const SEED_SECTIONS: SectionData[] = [
         "year": "2016"
       }
     ]
-  },
-  {
-    "id": "philosophy-section",
-    "type": "philosophy",
-    "title": "Philosophy & Tools",
-    "subtitle": "My Stack",
-    "isVisible": true,
-    "content": "### Philosophy\nI combine leadership with hands-on coding, believing true project management is people management. Staying close to development ensures clarity, mentorship, and scalable execution.\n\n### Tools\n**Development:** Node.js, React, Vue, Java, Python, Next.js, Nuxt.js\n\n**Project Management:** Jira, ClickUp, Notion, Asana, Trello, Confluence\n\n**Monitoring:** PostHog, New Relic, Mixpanel, Google Analytics, Datadog, Grafana, Sentry\n\n**AI/ML:** OpenAI, Anthropic Claude, Google Gemini, LangChain, Pinecone, Weaviate, Haystack\n\n**DevOps:** AWS, Docker, Kubernetes, Terraform, GitHub Actions, Jenkins\n\n**Security & Auth:** AWS IAM, Auth0\n\n**Databases:** PostgreSQL, MongoDB, Redis, Elasticsearch"
   }
 ];
 
 export const SEED_DATA: SiteConfig = {
   hero: {
-    "title": "Aishwary Shrivastava",
-    "subtitle": "Engineering Scalable Tech, Leading Teams, and Building AI-Powered Solutions.",
-    "rotatingWords": ["Leadership", "AI Systems", "Full-Stack Development", "Scalable Architecture"],
-    "experienceText": "9+ years of full-stack experience specializing in scalable and AI-driven systems.",
-    "techStack": ["Node.js", "React.js", "Vue.js", "Crew AI", "OpenAI", "MongoDB", "SQL", "AWS", "Java", "Python"],
+    "title": "Aish",
+    "subtitle": "Building Agentic AI Systems, Scalable Architectures, and Empowered Teams.",
+    "rotatingWords": ["Agentic AI", "Leadership", "System Design", "Product Strategy"],
+    "experienceText": "9+ years building AI-driven, scalable products while leading teams with empathy and precision.",
+    "techStack": [
+      "Agentic Systems",
+      "RAG",
+      "Prompt Engineering",
+      "TypeScript",
+      "Node.js (Nest)",
+      "Python",
+      "React, Next.js",
+      "Event-Driven Microservices",
+      "Domain-Driven Design",
+      "Clean Architecture",
+      "AWS",
+      "Javascript",
+      "MySQL",
+      "MongoDB",
+      "Elastic Search",
+      "Redis",
+      "CI/CD"
+    ],
     "bgImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=3870&auto=format&fit=crop"
   },
   aiConfig: {
     "enabled": true,
     "provider": "openai",
-    "systemPrompt": "You are a digital assistant for Aishwary Shrivastava. Answer questions based on his professional experience, projects, and philosophy.",
-    "welcomeMessage": "Hello! Ask me anything about Aishwary Shrivastava’s work, leadership, or projects.",
+    "systemPrompt": "You are a digital assistant for Aishwary Shrivastava — Principal Engineer and AI Systems Architect. You know his expertise in agentic architectures, RAG, LLM-driven products, leadership, and product strategy. He blends hands-on engineering with people-first leadership and believes management is about enabling people and self-mastery. He studied servant leadership at Sri Sathya Sai Institute and built teams from scratch at Llama and MachineHack, driving AI-first transformations.",
+    "welcomeMessage": "Hi! Ask me about Aishwary’s AI systems, leadership philosophy, or the products he’s built.",
     "apiKeys": {
       "openai": "",
       "gemini": "",
@@ -179,8 +197,8 @@ export const SEED_DATA: SiteConfig = {
     }
   },
   footer: {
-    "title": "Let's Connect",
-    "message": "© 2025 Aishwary Shrivastava. All rights reserved.",
+    "title": "Let’s Connect",
+    "message": "© 2025 Aishwary Shrivastava. Designing systems and teams that scale with intelligence.",
     "socials": {
       "twitter": "",
       "linkedin": "https://linkedin.com/in/aishwaryshrivastava",
