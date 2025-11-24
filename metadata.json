@@ -1,0 +1,7 @@
+{
+  "name": "Architect.AI - Portfolio",
+  "description": "A futuristic, cyberpunk-themed portfolio for a Technical Architect with integrated CMS and OpenAI-powered assistant.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
